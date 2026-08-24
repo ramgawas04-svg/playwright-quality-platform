@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
+    "typecheck": "tsc --noEmit",
     "test:dev": "node scripts/run-tests.cjs dev",
     "test:qa": "node scripts/run-tests.cjs qa",
     "test:staging": "node scripts/run-tests.cjs staging",
@@ -17,7 +18,8 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "@types/node": "^26.2.0"
+    "@types/node": "^26.2.0",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "dotenv": "^17.4.2"

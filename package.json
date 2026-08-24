@@ -1,0 +1,25 @@
+{
+  "name": "playwright-quality-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:dev": "node scripts/run-tests.cjs dev",
+    "test:qa": "node scripts/run-tests.cjs qa",
+    "test:staging": "node scripts/run-tests.cjs staging",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

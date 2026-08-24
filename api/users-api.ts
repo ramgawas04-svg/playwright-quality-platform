@@ -1,33 +1,15 @@
-import { type APIRequestContext } from '@playwright/test';
+import { type ApiClient, type ApiResult } from './core/api-client';
 import { type User } from './models/user';
 
-export type UserApiResult = {
-  status: number;
-  ok: boolean;
-  body: User;
-};
-
 export class UsersApi {
-  constructor(
-    private readonly request: APIRequestContext,
-    private readonly apiUrl: string,
-  ) {}
+  constructor(private readonly apiClient: ApiClient) {}
 
-  async getUser(userId: number): Promise<UserApiResult> {
-    const response = await this.request.get(
-      new URL(`/users/${userId}`, this.apiUrl).toString(),
+  async getUser(userId: number): Promise<ApiResult<User>> {
+    return this.apiClient.get(
+      `/users/${userId}`,
+      isUser,
+      `Received an invalid user response for user ${userId}.`,
     );
-    const body: unknown = await response.json();
-
-    if (!isUser(body)) {
-      throw new Error(`Received an invalid user response for user ${userId}.`);
-    }
-
-    return {
-      status: response.status(),
-      ok: response.ok(),
-      body,
-    };
   }
 }
 

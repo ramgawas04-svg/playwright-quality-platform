@@ -1,51 +1,26 @@
-import { type APIRequestContext } from '@playwright/test';
+import { type ApiClient, type ApiResult } from './core/api-client';
 import { type CreatePostRequest, type Post } from './models/post';
 
-export type PostApiResult = {
-  status: number;
-  ok: boolean;
-  body: Post;
-};
-
 export class PostsApi {
-  constructor(
-    private readonly request: APIRequestContext,
-    private readonly apiUrl: string,
-  ) {}
+  constructor(private readonly apiClient: ApiClient) {}
 
-  async getPost(postId: number): Promise<PostApiResult> {
-    const response = await this.request.get(
-      new URL(`/posts/${postId}`, this.apiUrl).toString(),
+  async getPost(postId: number): Promise<ApiResult<Post>> {
+    return this.apiClient.get(
+      `/posts/${postId}`,
+      isPost,
+      `Received an invalid post response for post ${postId}.`,
     );
-    const body: unknown = await response.json();
-
-    if (!isPost(body)) {
-      throw new Error(`Received an invalid post response for post ${postId}.`);
-    }
-
-    return {
-      status: response.status(),
-      ok: response.ok(),
-      body,
-    };
   }
 
-  async createPost(requestBody: CreatePostRequest): Promise<PostApiResult> {
-    const response = await this.request.post(
-      new URL('/posts', this.apiUrl).toString(),
-      { data: requestBody },
+  async createPost(
+    requestBody: CreatePostRequest,
+  ): Promise<ApiResult<Post>> {
+    return this.apiClient.post(
+      '/posts',
+      requestBody,
+      isPost,
+      'Received an invalid response when creating a post.',
     );
-    const body: unknown = await response.json();
-
-    if (!isPost(body)) {
-      throw new Error('Received an invalid response when creating a post.');
-    }
-
-    return {
-      status: response.status(),
-      ok: response.ok(),
-      body,
-    };
   }
 }
 

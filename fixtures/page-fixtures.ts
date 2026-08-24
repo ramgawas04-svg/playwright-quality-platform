@@ -1,4 +1,5 @@
 import { test as base, expect } from '@playwright/test';
+import { ApiClient } from '../api/core/api-client';
 import { PostsApi } from '../api/posts-api';
 import { UsersApi } from '../api/users-api';
 import { resolveEnvironment } from '../config/environments';
@@ -12,6 +13,7 @@ export type TestFixtures = {
   docsPage: DocsPage;
   apiPage: ApiPage;
   mcpPage: McpPage;
+  apiClient: ApiClient;
   postsApi: PostsApi;
   usersApi: UsersApi;
 };
@@ -29,15 +31,16 @@ export const test = base.extend<TestFixtures>({
   mcpPage: async ({ page }, use) => {
     await use(new McpPage(page));
   },
-  postsApi: async ({ request }, use) => {
+  apiClient: async ({ request }, use) => {
     const environment = resolveEnvironment();
 
-    await use(new PostsApi(request, environment.apiUrl));
+    await use(new ApiClient(request, environment.apiUrl));
   },
-  usersApi: async ({ request }, use) => {
-    const environment = resolveEnvironment();
-
-    await use(new UsersApi(request, environment.apiUrl));
+  postsApi: async ({ apiClient }, use) => {
+    await use(new PostsApi(apiClient));
+  },
+  usersApi: async ({ apiClient }, use) => {
+    await use(new UsersApi(apiClient));
   },
 });
 

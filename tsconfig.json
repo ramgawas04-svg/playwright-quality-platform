@@ -8,9 +8,10 @@
     "types": ["node"]
   },
   "include": [
-    "playwright.config.ts",
+    "playwright*.config.ts",
     "api/**/*.ts",
     "config/**/*.ts",
+    "diagnostics/**/*.ts",
     "fixtures/**/*.ts",
     "pages/**/*.ts",
     "test-data/**/*.ts",

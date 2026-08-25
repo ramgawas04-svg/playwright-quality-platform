@@ -15,6 +15,7 @@
     "fixtures/**/*.ts",
     "pages/**/*.ts",
     "test-data/**/*.ts",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "utils/**/*.ts"
   ]
 }

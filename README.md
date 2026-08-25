@@ -223,7 +223,8 @@ At the current checkpoint:
 
 - 8 UI tests
 - 3 API tests
-- 11 normal tests passing
+- 1 homepage broken-link test
+- 12 normal tests, with link-test results dependent on live target health
 - Separate deterministic diagnostics test
 
 ## Roadmap

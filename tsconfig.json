@@ -12,6 +12,7 @@
     "api/**/*.ts",
     "config/**/*.ts",
     "diagnostics/**/*.ts",
+    "examples/**/*.ts",
     "fixtures/**/*.ts",
     "pages/**/*.ts",
     "test-data/**/*.ts",

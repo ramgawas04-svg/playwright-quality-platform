@@ -3,33 +3,23 @@ import { ApiClient } from '../api/core/api-client';
 import { PostsApi } from '../api/posts-api';
 import { UsersApi } from '../api/users-api';
 import { resolveEnvironment } from '../config/environments';
-import { ApiPage } from '../pages/api-page';
-import { DocsPage } from '../pages/docs-page';
-import { HomePage } from '../pages/home-page';
-import { McpPage } from '../pages/mcp-page';
+import { AutomationExerciseHomePage } from '../pages/automation-exercise/home-page';
+import { ProductsPage } from '../pages/automation-exercise/products-page';
 
 export type TestFixtures = {
-  homePage: HomePage;
-  docsPage: DocsPage;
-  apiPage: ApiPage;
-  mcpPage: McpPage;
+  automationExerciseHomePage: AutomationExerciseHomePage;
+  productsPage: ProductsPage;
   apiClient: ApiClient;
   postsApi: PostsApi;
   usersApi: UsersApi;
 };
 
 export const test = base.extend<TestFixtures>({
-  homePage: async ({ page }, use) => {
-    await use(new HomePage(page));
+  automationExerciseHomePage: async ({ page }, use) => {
+    await use(new AutomationExerciseHomePage(page));
   },
-  docsPage: async ({ page }, use) => {
-    await use(new DocsPage(page));
-  },
-  apiPage: async ({ page }, use) => {
-    await use(new ApiPage(page));
-  },
-  mcpPage: async ({ page }, use) => {
-    await use(new McpPage(page));
+  productsPage: async ({ page }, use) => {
+    await use(new ProductsPage(page));
   },
   apiClient: async ({ request }, use) => {
     const environment = resolveEnvironment();

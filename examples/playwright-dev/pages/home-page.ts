@@ -4,13 +4,11 @@ export class HomePage {
   readonly mainHeading: Locator;
   readonly docsLink: Locator;
 
-  private readonly page: Page;
   private readonly apiLink: Locator;
   private readonly getStartedLink: Locator;
   private readonly mcpLink: Locator;
 
-  constructor(page: Page) {
-    this.page = page;
+  constructor(private readonly page: Page) {
     this.mainHeading = page.getByRole('heading', {
       name: 'Playwright enables reliable web automation for testing, scripting, and AI agents.',
     });

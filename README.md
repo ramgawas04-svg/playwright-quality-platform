@@ -78,6 +78,12 @@ npm run test:staging
 
 Tests use Playwright's native `baseURL`, so test files remain independent of the selected deployment environment.
 
+Automation Exercise is the primary UI target. The preserved Playwright.dev framework examples run separately with:
+
+```bash
+npx playwright test --config=playwright.examples.config.ts
+```
+
 Configuration precedence:
 
 ```text
@@ -221,10 +227,11 @@ Examples:
 
 At the current checkpoint:
 
-- 8 UI tests
+- 3 Automation Exercise smoke tests
+- 8 isolated Playwright.dev example tests
 - 3 API tests
 - 1 homepage broken-link test
-- 12 normal tests, with link-test results dependent on live target health
+- 7 normal tests, with link-test results dependent on live target health
 - Separate deterministic diagnostics test
 
 ## Roadmap

@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/page-fixtures';
+import { test, expect } from './page-fixtures';
 
 test('opens the Playwright documentation', async ({ page, homePage }) => {
   await homePage.open();

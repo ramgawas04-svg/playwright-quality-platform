@@ -16,15 +16,15 @@ export const environmentConfigs: Record<
   Omit<EnvironmentConfig, 'environment'>
 > = {
   dev: {
-    baseUrl: 'https://playwright.dev',
+    baseUrl: 'https://www.automationexercise.com',
     apiUrl: 'https://jsonplaceholder.typicode.com',
   },
   qa: {
-    baseUrl: 'https://playwright.dev',
+    baseUrl: 'https://www.automationexercise.com',
     apiUrl: 'https://jsonplaceholder.typicode.com',
   },
   staging: {
-    baseUrl: 'https://playwright.dev',
+    baseUrl: 'https://www.automationexercise.com',
     apiUrl: 'https://jsonplaceholder.typicode.com',
   },
 };

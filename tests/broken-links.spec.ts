@@ -1,6 +1,8 @@
 import { test, expect } from '../fixtures/page-fixtures';
 import { checkPageLinks, type BrokenLink } from '../utils/link-checker';
 
+test.setTimeout(90_000);
+
 test('homepage has no broken internal HTTP links', async ({ page, request }) => {
   await page.goto('/');
 
